@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+
+<struts>
+
+	<package name="default" extends="struts-default">
+	
+		<action name="login" class="com.Mbean.WelcomeUserAction" method="loginuser">
+			<result name="SUCCESS">/welcome_user.jsp</result>
+			<result name= "ERROR">/login.jsp </result>
+		</action>
+		
+		<action name="update" class="com.Mbean.WelcomeUserAction" method="editUser">
+		<result name = "SUCCESS">/EmployeeEditedSave.jsp</result>
+		</action>
+		
+		<action name="saveEditEmp" class="com.Mbean.EditSaveAction" method="Savechanges">
+		<result name = "SUCCESS">/welcome_user.jsp</result>
+		<result name = "ERROR">/EmployeeEditedSave.jsp</result> </action>
+		
+		<action name="PrePop" class="com.Mbean.EditSaveAction" method="Populate">
+		<result name = "SUCCESS">/EmployeeEditedSave.jsp</result>
+		</action>
+		
+
+
+	</package>
+
+
+</struts>
