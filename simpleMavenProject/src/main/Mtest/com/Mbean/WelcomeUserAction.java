@@ -44,18 +44,14 @@ public class WelcomeUserAction extends ActionSupport{
 	
 
 	
-
-	
 	private String email;
 	
 	public static final int MIN_PASSWORD_LENGTH = 8;
 	public static final int MAX_PASSWORD_LENGTH = 35;
 	
 	
-	/*logic goes here*/
-	/*when login button is click this is implemented*/
+	/*logic for when login button is clicked*/
 	public String loginuser()  {
-		
 		
 		employeeAccount = LoginReadfile.fetchEmployeesLoginAccount();
 		employees = EmployeeBo.fetchEmployees();
@@ -70,13 +66,9 @@ public class WelcomeUserAction extends ActionSupport{
 		}
 		
 		
-		
-		
-		
 		for(int i = 0; i < employeeAccount.size(); i++)
 		{
 			System.out.println(employeeAccount.get(i).getUsername());
-			
 			
 			if(employeeAccount.get(i).getUsername().compareTo(username) == 0 && employeeAccount.get(i).getPassword().compareTo(password) == 0)
 			{
@@ -88,15 +80,12 @@ public class WelcomeUserAction extends ActionSupport{
 		        }); 
 			   return "SUCCESS";	
 			}
-			
-			}
+		}
 		
 		
-		 //needs to return a string
+		//needs to return a string
 		addActionError("Username or Password do not match");
 		return "ERROR";
-		
-		
 				
 	}
 	
@@ -107,9 +96,7 @@ public class WelcomeUserAction extends ActionSupport{
 	public String editUser()
 	{
 		System.out.println("hello");
-		
 		employees = EmployeeBo.fetchEmployees();
-		
 		
 				for(int k = 0; k<employees.size(); k++)
 				{
@@ -117,8 +104,6 @@ public class WelcomeUserAction extends ActionSupport{
 					System.out.println(employees.get(k).getFirstName()+" "+ employees.get(k).getLastName() + "  "+ employees.get(k).getId());
 				}
 				
-		
-		
 		
 		return "SUCCESS";
 	}

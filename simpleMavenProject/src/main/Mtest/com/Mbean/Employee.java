@@ -3,7 +3,6 @@ package com.Mbean;
   
 
 public class Employee {
-
 	String firstName;
 	String lastName;
 	String address;
@@ -15,9 +14,6 @@ public class Employee {
 	String email;
 	String id;
 
-	/*public Employee() {
-		super();
-	}*/
 
 	public Employee(String empfName, String emplName, String empAddress, String empCity, String empState, String empZip,
 			String empcPhone, String emphPhone, String empEmail, String empId) {
@@ -32,7 +28,6 @@ public class Employee {
 		homePhone = emphPhone;
 		email = empEmail;
 		id = empId; 
-		
 	}
 
 	public String getFirstName() {

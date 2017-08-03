@@ -1,6 +1,8 @@
 package com.Mbean;
 
-public class EmployeeLoginAccount {
+import com.opensymphony.xwork2.ActionSupport;
+
+public class EmployeeLoginAccount extends ActionSupport {
 	
 	String username;
 	String password;
@@ -10,7 +12,6 @@ public class EmployeeLoginAccount {
 		
 	}
 
-	
 	
 	public EmployeeLoginAccount(String elaUsername, String elaPassword) {
 		this();
