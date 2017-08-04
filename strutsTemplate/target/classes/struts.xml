@@ -14,17 +14,17 @@
 		</action>
 		
 		<action name="update" class="com.ibm.actions.EditUserAction" method="editUser">
-			<result name = "SUCCESS">/EmployeeEditedSave.jsp</result>
+			<result name="SUCCESS">empEdit.jsp</result>
 		</action>
 		
-<!-- 		<action name="saveEditEmp" class="com.Mbean.EditSaveAction" method="Savechanges"> -->
-<!-- 			<result name = "SUCCESS">/welcome_user.jsp</result> -->
-<!-- 			<result name = "ERROR">/EmployeeEditedSave.jsp</result> -->
-<!-- 		</action> -->
+		<action name="PrePop" class="com.ibm.actions.EditSaveAction" method="populate">
+			<result name="SUCCESS">empEdit.jsp</result>
+		</action>
 		
-<!-- 		<action name="PrePop" class="com.Mbean.EditSaveAction" method="Populate"> -->
-<!-- 			<result name = "SUCCESS">/EmployeeEditedSave.jsp</result> -->
-<!-- 		</action> -->
+		<action name="saveEditEmp" class="com.ibm.actions.EditSaveAction" method="saveChanges">
+			<result name="SUCCESS">empList.jsp</result>
+			<result name="ERROR">empEdit.jsp</result>
+		</action>
 		
 
 

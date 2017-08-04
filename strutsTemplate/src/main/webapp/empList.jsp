@@ -17,7 +17,7 @@
 
 
 	<s:if test="hasActionMessages()">
-		<div class="welcome_user">
+		<div class="empList">
 			<s:actionmessage />
 		</div>
 	</s:if>
@@ -34,14 +34,14 @@
 
 
 	<s:iterator value="employees" status="employeesStatus">
-		<s:url action="PrePop">
+		<s:url id="eEmail" action="PrePop">
 			<s:param name="email">
 				<s:property value="email" />
 			</s:param>
 		</s:url>
 
 		<tr>
-			<td><a href='<s:property value = "#eEmail"/>'><s:property
+			<td><a href='<s:property value="#eEmail"/>'><s:property
 						value="firstName" /> <s:property value="lastName" /></a></td>
 						<!-- hidden status index -->
 

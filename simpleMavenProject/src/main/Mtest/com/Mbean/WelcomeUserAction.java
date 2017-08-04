@@ -42,8 +42,6 @@ public class WelcomeUserAction extends ActionSupport{
 	private String firstName;
 	private String lastName;
 	
-
-	
 	private String email;
 	
 	public static final int MIN_PASSWORD_LENGTH = 8;

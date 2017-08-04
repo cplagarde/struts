@@ -11,7 +11,7 @@ public class Employee {
 	String zip;
 	String cellPhone;
 	String homePhone;
-	String email;
+	public String email;
 	String id;
 
 
