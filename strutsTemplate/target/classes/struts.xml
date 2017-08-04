@@ -26,6 +26,9 @@
 			<result name="ERROR">empEdit.jsp</result>
 		</action>
 		
+		<action name="logout" class="com.ibm.actions.LogoutAction" method="logoutUser">
+			<result name="SUCCESS">login.jsp</result>
+		</action>
 
 
 	</package>
