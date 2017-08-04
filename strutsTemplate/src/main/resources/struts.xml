@@ -15,7 +15,7 @@
 			<result name="loginPage">login.jsp</result>
 		</global-results>
 
-		<action name="login" class="com.ibm.actions.LoginAction" method="loginEmployee">
+		<action name="login" class="com.ibm.actions.LoginAction" method="loginUser">
 			<result name="success">employeeList.jsp</result>
 			<result name="error">login.jsp</result>
 		</action>
