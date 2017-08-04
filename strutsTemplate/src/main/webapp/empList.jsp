@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome Page</title>
+<title>Employee List</title>
 
 <style>
 /* The Modal (background) */
@@ -60,6 +60,9 @@
 	
 	<!-- testing modal box -->	
 	
+	
+	
+	
 	<!-- Trigger/Open The Modal -->
 	<button id="myBtn">Open Modal</button>
 	
@@ -104,17 +107,7 @@
 	
 
 
-
-
-
-
-
-
-
-
-
-
-	<!-- done testing popups -->
+	<!-- done testing modal box -->
 	
 	
 	
