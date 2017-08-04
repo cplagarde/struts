@@ -34,7 +34,7 @@
 
 
 	<s:iterator value="employees" status="employeesStatus">
-		<s:url id="eEmail" action="PrePop">
+		<s:url var="eEmail" action="PrePop">
 			<s:param name="email">
 				<s:property value="email" />
 			</s:param>
