@@ -17,7 +17,7 @@
 			<result name="SUCCESS">empEdit.jsp</result>
 		</action>
 		
-		<action name="PrePop" class="com.ibm.actions.EditSaveAction" method="populate">
+		<action name="prePop" class="com.ibm.actions.EditSaveAction" method="populate">
 			<result name="SUCCESS">empEdit.jsp</result>
 		</action>
 		

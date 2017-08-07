@@ -47,6 +47,41 @@
 }
 </style>
 
+<script type="text/javascript">
+	var counter = 0;
+	function increment(){
+		counter++;
+		return counter;
+	}	
+
+	function changeModalButtonId()
+	{
+		var element = document.getElementById('myBtn');
+			element.id = element.id + increment();
+	}
+	
+// 	function f()
+// 	{
+// 		var btns = document.getElementsByClassName("btnArr");
+// 		var fields = new Array(btns.length);
+// 		for(var i = 0; i < btns.length; i++)
+// 		{
+// 			fields[i] = btns[i].getElementsByTagName("s:set");
+// 		}
+// 	}
+	
+	function updateModal(id) {
+		var modalFields = document.getElementsByClassName("modalFields");
+		var modalSelectors = document.getElementsByClassName("modalSelectors");
+		var btn = document.getElementById(id);
+		var numOfFields = btn.getElementsByTagName("s:set");
+		
+		for (var i = 0; i < numOfFields.length; i++){
+			modalFields[i] = numOfFields[i];
+		}
+		for(var j = 0; j < )
+	}
+</script>
 
 </head>
 <body>
@@ -58,90 +93,48 @@
 	<b>Employee List</b>
 	<br />
 	
-	<!-- testing modal box -->	
 	
 	
 	
-	
-	<!-- Trigger/Open The Modal -->
-	<button id="myBtn">Open Modal</button>
-	
+	<!-- testing modal box	 -->
+
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 	
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	    <p>Some text in the Modal..</p>
-	 
-	  
-	  <h3>Welcome <s:property value="username"></s:property></h3>
-	  
-	<s:form action="saveEditEmp">
 
-	<s:textfield name="firstName" label="First Name" />
-		<s:textfield name="lastName" label="Last Name" />
-		<s:textfield name="address" label="Address" />
-		<s:textfield name="city" label="City" />
-		 <s:select label= "State" headerValue ="Select"  name="state" list= "#{'':'Select','AL':'AL', 'AK':'AK', 'DE': 'DE',
+	<s:textfield class="modalFields" name="firstName" label="First Name" placeholder="" />
+		<s:textfield class="modalFields" name="lastName" label="Last Name" placeholder="" />
+		<s:textfield class="modalFields" name="address" label="Address" placeholder="" />
+		<s:textfield class="modalFields" name="city" label="City" placeholder="" />
+		<s:select class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
 		 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN', 'IA':'IA', 'KS':'KS', 'KY': 'KY',
-		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
-		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
-		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
-		 'WV': 'WV', 'WI': 'WI' }"/> 
-		
-		<s:textfield name="zip" label="Zip/Postal Code" />
-		<s:textfield name="cellPhone" label="Cell Phone" />
-		<s:textfield name="homePhone" label="Home Phone" />
-		<s:textfield name="email" label="Email" />
-		<s:textfield name="id" label ="ID"/>
-		
+ 		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
+ 		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
+ 		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
+ 		 'WV': 'WV', 'WI': 'WI' }" />
+		<s:textfield class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
+		<s:textfield class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
+		<s:textfield class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
+		<s:textfield class="modalFields" name="email" label="Email" placeholder="" />
+		<s:textfield class="modalFields" name="id" label ="ID" placeholder="" />
+				
 		
 		<s:if test="hasActionErrors()">
-   <div class="EmployeeEditedSave">
-      <s:actionerror/>
-   </div>
-</s:if>
+   			<div class="EmployeeEditedSave">
+      		<s:actionerror/>
+      		</div>
+		</s:if>
 		
 		<input type="submit" value="Add/Update Employee" name="save/update" />
 		<input type="submit" value="Cancel" name="Cancel" />
-		
-	</s:form>
 	
 	   </div>
 	
 	</div>
 	
-	<script>
-	// Get the modal
-	var modal = document.getElementById('myModal');
-	
-	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
-	
-	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
-	
-	// When the user clicks the button, open the modal 
-	btn.onclick = function() {
-	    modal.style.display = "block";
-	}
-	
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function() {
-	    modal.style.display = "none";
-	}
-	
-	// When the user clicks anywhere outside of the modal, close it
-	window.onclick = function(event) {
-	    if (event.target == modal) {
-	        modal.style.display = "none";
-	    }
-	}
-	</script>
-	
-
-
 	<!-- done testing modal box -->
 	
 	
@@ -161,32 +154,94 @@
 
 
 
-	<s:form action="update">
 
-
-	<s:iterator value="employees" status="employeesStatus">
-		<s:url var="eEmail" action="PrePop">
+	<s:iterator value="employees">
+		<s:url var="eEmail">
 			<s:param name="email">
 				<s:property value="email" />
 			</s:param>
 		</s:url>
 
 		<tr>
-			<td><a href='<s:property value="#eEmail"/>'><s:property
-						value="firstName" /> <s:property value="lastName" /></a></td>
+			<td><button class="btnArr" id="myBtn"> 
+					<s:property value="firstName" />
+					<s:property value="lastName" />
+					
+					<s:set var="a" value="firstName" />
+					
+					
+				</button>
+				<div class="test">
+					dsfsfdsa
+				</div>
+				<s:set var="a" value="firstName" />
+				<s:set var="b" value="lastName" />
+				<s:set var="c" value="address" />
+				<s:set var="d" value="city" />
+				<s:set var="e" value="state" /> 
+				<s:set var="f" value="zip" /> 
+				<s:set var="g" value="cellPhone" /> 
+				<s:set var="h" value="homePhone" /> 
+				<s:set var="i" value="email" /> 
+				<s:set var="j" value="id" /> 
+				<s:set var="k" value="username" />
+				<script>
+					
+				</script>
+				
+				
+				<script type="text/javascript">
+					changeModalButtonId();
+				</script>
+			</td>
 						<!-- hidden status index -->
 
 			<td><s:property value="email" /></td>
 		</tr>
 
-
 	</s:iterator>
+	
 
 		<input type="submit" value="Add Employee" name="UpdateAddEmp" />
 
 
 
-	</s:form>
+
+
+
+	<script type="text/javascript">	
+	// Get the modal
+	var modal = document.getElementById('myModal');
+	
+	// Get the button that opens the modal
+	var btns = document.getElementsByClassName("btnArr");
+	console.log(btns);
+	
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+	
+	// When the user clicks the button, open the modal
+	for (var i = 0; i < btns.length; i++) {
+		btns[i].onclick = function() {
+	    	modal.style.display = "block";
+		}
+	}
+	
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function() {
+	    modal.style.display = "none";
+	}
+	
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	}
+	</script>
+
+	
+	
 
 
 </body>
