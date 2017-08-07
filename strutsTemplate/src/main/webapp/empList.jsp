@@ -74,12 +74,15 @@
 		var modalFields = document.getElementsByClassName("modalFields");
 		var modalSelectors = document.getElementsByClassName("modalSelectors");
 		var btn = document.getElementById(id);
-		var numOfFields = btn.getElementsByTagName("s:set");
+		var numOfFields = document.getElementsByClassName("dataField");
+		var numOfSelectors = document.getElementsByClassName("selectorField");
 		
 		for (var i = 0; i < numOfFields.length; i++){
-			modalFields[i] = numOfFields[i];
+			modalFields[i].placeholder = numOfFields[i].textContent;
 		}
-		for(var j = 0; j < )
+		for(var j = 0; j < numOfSelectors.length; j++){
+			modalSelectors[j].placeholder = numOfSelectors[j].innerHTML;
+		}
 	}
 </script>
 
@@ -163,28 +166,47 @@
 		</s:url>
 
 		<tr>
+		
+		
+		<!-- BBBBBBBBBBBBBBBUUUUUUUUUUUUUTTTTTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!!!!!!!!!!!!! -->
 			<td><button class="btnArr" id="myBtn"> 
 					<s:property value="firstName" />
 					<s:property value="lastName" />
 					
-					<s:set var="a" value="firstName" />
-					
-					
 				</button>
-				<div class="test">
-					dsfsfdsa
+				<div class="dataField">
+					<s:property value="firstName" />
 				</div>
-				<s:set var="a" value="firstName" />
-				<s:set var="b" value="lastName" />
-				<s:set var="c" value="address" />
-				<s:set var="d" value="city" />
-				<s:set var="e" value="state" /> 
-				<s:set var="f" value="zip" /> 
-				<s:set var="g" value="cellPhone" /> 
-				<s:set var="h" value="homePhone" /> 
-				<s:set var="i" value="email" /> 
-				<s:set var="j" value="id" /> 
-				<s:set var="k" value="username" />
+				<div class="dataField">
+					<s:property value="lastName" />
+				</div>
+				<div class="dataField">
+					<s:property value="address" />
+				</div>
+				<div class="dataField">
+					<s:property value="city" />
+				</div>
+				<div class="selectorField">
+					<s:property value="state" />
+				</div>
+				<div class="dataField">
+					<s:property value="zip" />
+				</div>
+				<div class="dataField">
+					<s:property value="cellPhone" />
+				</div>
+				<div class="dataField">
+					<s:property  value="homePhone" />
+				</div>
+				<div class="dataField">
+					<s:property value="email" />
+				</div>
+				<div class="dataField">
+					<s:property value="id" />
+				</div>
+				<div class="dataField">
+					<s:property value="username" />
+				</div>
 				<script>
 					
 				</script>
@@ -215,7 +237,6 @@
 	
 	// Get the button that opens the modal
 	var btns = document.getElementsByClassName("btnArr");
-	console.log(btns);
 	
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
@@ -224,6 +245,7 @@
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
 	    	modal.style.display = "block";
+	    	updateModal(this.id);
 		}
 	}
 	
