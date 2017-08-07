@@ -10,7 +10,7 @@ import java.util.*;
 import com.opensymphony.xwork2.ActionSupport;
 import com.ibm.bo.*;
 import com.ibm.beans.Employee;
-import com.ibm.dao.EmpDAO;
+import com.ibm.dao.LoginDAO;
 
 //import com.testObj.Test;
 
@@ -24,7 +24,7 @@ public class LoginAction extends ActionSupport{
 	
 	/*array list holds info*/
 	private List<Employee> employees = null;
-	private List<EmpDAO> employeeAccount = null;
+	private List<LoginDAO> employeeAccount = null;
 	
 	/*declartions*/
 	private String username;
@@ -32,8 +32,6 @@ public class LoginAction extends ActionSupport{
 	
 	private String firstName;
 	private String lastName;
-	
-
 	
 	private String email;
 	
@@ -44,7 +42,7 @@ public class LoginAction extends ActionSupport{
 	/*logic for when login button is clicked*/
 	public String loginUser()  {
 		
-		employeeAccount = LoginBO.fetchEmpDAO();
+		employeeAccount = LoginBO.fetchLoginDAO();
 		employees = EmpBO.fetchEmployees();
 		
 		

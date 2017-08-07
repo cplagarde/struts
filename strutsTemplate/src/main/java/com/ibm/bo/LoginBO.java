@@ -10,16 +10,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.ibm.actions.LoginAction;
-import com.ibm.dao.EmpDAO;
+import com.ibm.dao.LoginDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class LoginBO extends ActionSupport {
 
-	String username;
-	String password;
 	private static final long serialVersionUID = 1L;
 	
-	public static List<EmpDAO> fetchEmpDAO() { 
+	public static List<LoginDAO> fetchLoginDAO() { 
 //		Voodoo magic to get relative path
 		URL url = new EmpBO().getClass().getClassLoader().getResource("/login_account.csv");
 	    URI uri = null;
@@ -35,8 +33,8 @@ public class LoginBO extends ActionSupport {
 		
 	    String line = ""; 
 	    String cvsSplitBy = ","; 
-	    List<EmpDAO> emparraylogin = new ArrayList<EmpDAO>(); 
-	    EmpDAO employeeLoginAccount; 
+	    List<LoginDAO> emparraylogin = new ArrayList<LoginDAO>(); 
+	    LoginDAO employeeLoginAccount; 
 	    
 	    
 	    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) { 
@@ -44,7 +42,7 @@ public class LoginBO extends ActionSupport {
 	            // use comma as separator 
 	            String[] emp = line.split(cvsSplitBy); 
 	            
-	            employeeLoginAccount = new EmpDAO(emp[0], emp[1]); 
+	            employeeLoginAccount = new LoginDAO(emp[0], emp[1]); 
 	            emparraylogin.add(employeeLoginAccount); 	         
 	    
 	            System.out.println("Employee name is " + employeeLoginAccount.getUsername() + " " + employeeLoginAccount.getPassword());

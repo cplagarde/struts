@@ -2,20 +2,20 @@ package com.ibm.dao;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class EmpDAO extends ActionSupport {
+public class LoginDAO extends ActionSupport {
 	
 
 	
 	String username;
 	String password;
 
-	public EmpDAO() {
+	public LoginDAO() {
 		super();
 		
 	}
 
 	
-	public EmpDAO(String elaUsername, String elaPassword) {
+	public LoginDAO(String elaUsername, String elaPassword) {
 		this();
 		username = elaUsername;
 		password = elaPassword;
