@@ -72,10 +72,15 @@
 	
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
+		console.log(modalFields);
 		var modalSelectors = document.getElementsByClassName("modalSelectors");
+		console.log(modalSelectors);
 		var btn = document.getElementById(id);
-		var numOfFields = document.getElementsByClassName("dataField");
-		var numOfSelectors = document.getElementsByClassName("selectorField");
+		console.log(btn);
+		var numOfFields = btn.getElementsByClassName("dataField");
+		console.log(numOfFields);
+		var numOfSelectors = btn.getElementsByClassName("selectorField");
+		console.log(numOfSelectors);
 		
 		for (var i = 0; i < numOfFields.length; i++){
 			modalFields[i].placeholder = numOfFields[i].textContent;
@@ -170,10 +175,10 @@
 		
 		<!-- BBBBBBBBBBBBBBBUUUUUUUUUUUUUTTTTTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!!!!!!!!!!!!! -->
 			<td><button class="btnArr" id="myBtn"> 
-					<s:property value="firstName" />
-					<s:property value="lastName" />
+				<s:property value="firstName" />
+				<s:property value="lastName" />
 					
-				</button>
+					
 				<div class="dataField">
 					<s:property value="firstName" />
 				</div>
@@ -204,9 +209,9 @@
 				<div class="dataField">
 					<s:property value="id" />
 				</div>
-				<div class="dataField">
-					<s:property value="username" />
-				</div>
+				
+				</button>
+				
 				<script>
 					
 				</script>
@@ -244,8 +249,8 @@
 	// When the user clicks the button, open the modal
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
+			updateModal(this.id);
 	    	modal.style.display = "block";
-	    	updateModal(this.id);
 		}
 	}
 	
