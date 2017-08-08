@@ -46,6 +46,7 @@
     cursor: pointer;
 }
 
+/* hide the divs that are part of the button */
 .selectorField,
 .dataField {
 	display: none;
@@ -59,11 +60,13 @@
 		return counter;
 	}	
 
+// 	create an individual id for each button
 	function changeModalButtonId() {
 		var element = document.getElementById('myBtn');
 			element.id = element.id + increment();
 	}
 	
+// 	replace placeholders for each part of modal textfield with respective employee data
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
 		var modalSelectors = document.getElementById("login_state").children[0];
@@ -143,8 +146,8 @@
 		</div>
 	</s:if>
 
-		<input type="submit" value="Add Employee" name="UpdateAddEmp" />
-		<br>
+	<input type="submit" value="Add Employee" name="UpdateAddEmp" />
+	<br>
 	
 	<table>
 		<s:iterator value="employees">
@@ -154,7 +157,7 @@
 				</s:param>
 			</s:url>
 		<tr>	
-		<!-- BBBBBBBBBBBBBBBUUUUUUUUUUUUUTTTTTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!!!!!!!!!!!!! -->
+			<!-- button that accesses employee data and creates it on document -->
 			<td><button class="btnArr" id="myBtn"> 
 				<s:property value="firstName" />
 				<s:property value="lastName" />
@@ -191,21 +194,17 @@
 					<s:property value="id" />
 				</div>
 				
-				</button>
-				
-				
-				
-				<script type="text/javascript">
-					changeModalButtonId();
-				</script>
-			</td>
-						<!-- hidden status index -->
+			</button>
 
-			<td><s:property value="email" /></td>
+			<script type="text/javascript">
+				changeModalButtonId();
+			</script>
+
+		</td>
+		<td><s:property value="email" /></td>
 		</tr>
-
-	</s:iterator>
-</table>
+		</s:iterator>
+	</table>
 
 
 
@@ -221,7 +220,7 @@
 	// Get the <span> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 	
-	// When the user clicks the button, open the modal
+	// When the user clicks the button, open the modal for employee clicked
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
 			updateModal(this.id);
