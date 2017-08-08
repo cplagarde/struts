@@ -102,6 +102,11 @@
 		Welcome
 		<s:property value="username"></s:property>
 	</h3>
+	
+	<s:form action="logout">
+		<s:submit value="logout" />
+	</s:form>
+	
 
 	<b>Employee Editor</b>
 	<br />
@@ -110,26 +115,26 @@
 	<!--**************************************************************** The Modal ****************************************************************-->
 	<div id="myModal" class="modal">
 	
-	  <!-- Modal content -->
-	  <div class="modal-content">
+	<!-- Modal content -->
+	<div class="modal-content">
 	    <span class="close">&times;</span>
-		<s:form>
+		<s:form aciton="editEmp">
 			<s:textfield type="text" class="modalFields" name="firstName" label="First Name" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="address" label="Address" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="city" label="City" placeholder="" />
-			<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
-			 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN', 'IA':'IA', 'KS':'KS', 'KY': 'KY',
-	 		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
-	 		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
-	 		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
-	 		 'WV': 'WV', 'WI': 'WI' }" />
+			<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{
+				'AL':'AL', 'AK':'AK', 'DE': 'DE', 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN',
+				'IA':'IA', 'KS':'KS', 'KY': 'KY', 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS',
+				'MO':'MO', 'MT':'MT', 'NE': 'NE', 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND',
+				'OH':'OH', 'OK':'OK', 'OR': 'OR', 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT',
+				'VT':'VT', 'VA':'VA', 'WA': 'WA', 'WV': 'WV', 'WI': 'WI' }" />
 			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="email" label="Email" placeholder="" />
 			<s:textfield type="text" class="modalFields" name="id" label ="ID" placeholder="" />
-		</s:form>		
+					
 		
 		<s:if test="hasActionErrors()">
    			<div class="EmployeeEditedSave">
@@ -139,8 +144,9 @@
 		
 		<input type="submit" value="Add/Update Employee" name="save/update" />
 		<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
-		
-	   </div>
+
+		</s:form>	
+	</div>
 	</div>
 	<!-- done with modal box -->
 	
@@ -158,6 +164,8 @@
 			<s:actionerror />
 		</div>
 	</s:if>
+
+
 
 	<input type="submit" value="Add Employee" name="UpdateAddEmp" />
 	<br>
