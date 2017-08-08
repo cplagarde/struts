@@ -54,39 +54,26 @@
 		return counter;
 	}	
 
-	function changeModalButtonId()
-	{
+	function changeModalButtonId() {
 		var element = document.getElementById('myBtn');
 			element.id = element.id + increment();
 	}
 	
-// 	function f()
-// 	{
-// 		var btns = document.getElementsByClassName("btnArr");
-// 		var fields = new Array(btns.length);
-// 		for(var i = 0; i < btns.length; i++)
-// 		{
-// 			fields[i] = btns[i].getElementsByTagName("s:set");
-// 		}
-// 	}
+
 	
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
-		console.log(modalFields);
-		var modalSelectors = document.getElementsByClassName("modalSelectors");
-		console.log(modalSelectors);
+		var modalSelectors = document.getElementById("login_state").children[0];
+		console.log(modalSelectors);	
 		var btn = document.getElementById(id);
-		console.log(btn);
 		var numOfFields = btn.getElementsByClassName("dataField");
-		console.log(numOfFields);
 		var numOfSelectors = btn.getElementsByClassName("selectorField");
-		console.log(numOfSelectors);
 		
 		for (var i = 0; i < numOfFields.length; i++){
-			modalFields[i].placeholder = numOfFields[i].textContent;
+			modalFields[i].placeholder = numOfFields[i].textContent.trim();
 		}
 		for(var j = 0; j < numOfSelectors.length; j++){
-			modalSelectors[j].placeholder = numOfSelectors[j].innerHTML;
+			modalSelectors.innerHTML = numOfSelectors[j].textContent.trim();
 		}
 	}
 </script>
@@ -112,23 +99,23 @@
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-
-	<s:textfield class="modalFields" name="firstName" label="First Name" placeholder="" />
-		<s:textfield class="modalFields" name="lastName" label="Last Name" placeholder="" />
-		<s:textfield class="modalFields" name="address" label="Address" placeholder="" />
-		<s:textfield class="modalFields" name="city" label="City" placeholder="" />
-		<s:select class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
+	<s:form>
+	<s:textfield type="text" class="modalFields" name="firstName" label="First Name" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="address" label="Address" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="city" label="City" placeholder="" />
+		<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
 		 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN', 'IA':'IA', 'KS':'KS', 'KY': 'KY',
  		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
  		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
  		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
  		 'WV': 'WV', 'WI': 'WI' }" />
-		<s:textfield class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
-		<s:textfield class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
-		<s:textfield class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
-		<s:textfield class="modalFields" name="email" label="Email" placeholder="" />
-		<s:textfield class="modalFields" name="id" label ="ID" placeholder="" />
-				
+		<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="email" label="Email" placeholder="" />
+		<s:textfield type="text" class="modalFields" name="id" label ="ID" placeholder="" />
+		</s:form>		
 		
 		<s:if test="hasActionErrors()">
    			<div class="EmployeeEditedSave">
