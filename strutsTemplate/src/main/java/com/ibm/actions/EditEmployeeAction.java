@@ -20,7 +20,7 @@ import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.ibm.bo.EmpBO;
 import com.ibm.beans.Employee;
 
-public class EditSaveAction extends ActionSupport {
+public class EditEmployeeAction extends ActionSupport {
 
 	private static final long serialVersionUID = 6491979737900738459L;
 	private List<Employee> employees = null;

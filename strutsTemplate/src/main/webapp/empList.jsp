@@ -66,7 +66,7 @@
 			element.id = element.id + increment();
 	}
 	
-// 	replace placeholders for each part of modal textfield with respective employee data
+// 	replace placeholders for each part of modal textfield with respective employee data (utilizing DOM)
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
 		var modalSelectors = document.getElementById("login_state").children[0];
@@ -81,6 +81,19 @@
 			modalSelectors.innerHTML = numOfSelectors[j].textContent.trim();
 		}
 	}
+	
+// 	replace value of modal to default if modal is cancelled
+	function cancelModal() {
+		var modalFields = document.getElementsByClassName("modalFields");
+	    var modalSelectors = document.getElementsByClassName("modalSelectors");
+	    for (var i = 0; i < modalFields.length; i++) {
+	        modalFields[i].value = "";
+	    }
+	    for (var j = 0; j < modalSelectors.length; j++) {
+	    	modalSelectors[j].selectedIndex = 0;
+	    }
+	}
+
 </script>
 
 </head>
@@ -90,7 +103,7 @@
 		<s:property value="username"></s:property>
 	</h3>
 
-	<b>Employee List</b>
+	<b>Employee Editor</b>
 	<br />
 	
 	
@@ -125,8 +138,8 @@
 		</s:if>
 		
 		<input type="submit" value="Add/Update Employee" name="save/update" />
-		<input type="submit" value="Cancel" name="Cancel" />
-	
+		<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
+		
 	   </div>
 	</div>
 	<!-- done with modal box -->
@@ -159,8 +172,7 @@
 		<tr>	
 			<!-- button that accesses employee data and creates it on document -->
 			<td><button class="btnArr" id="myBtn"> 
-				<s:property value="firstName" />
-				<s:property value="lastName" />
+				Edit
 				<br>
 		
 				<div class="dataField">
@@ -199,9 +211,10 @@
 			<script type="text/javascript">
 				changeModalButtonId();
 			</script>
-
-		</td>
-		<td><s:property value="email" /></td>
+			
+			</td>
+			<td><s:property value="firstName" /> <s:property value="lastName" /></td>
+			<td><s:property value="email" /></td>
 		</tr>
 		</s:iterator>
 	</table>
@@ -217,8 +230,9 @@
 	// Get the button that opens the modal
 	var btns = document.getElementsByClassName("btnArr");
 	
-	// Get the <span> element that closes the modal
+	// Get the <span> & <input> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
+	var cancelBtn = document.getElementsByClassName("cancelBtn")[0];
 	
 	// When the user clicks the button, open the modal for employee clicked
 	for (var i = 0; i < btns.length; i++) {
@@ -228,17 +242,31 @@
 		}
 	}
 	
-	// When the user clicks on <span> (x), close the modal
+	// When the user clicks on <span> (x) or cancelBtn, close the modal
 	span.onclick = function() {
 	    modal.style.display = "none";
+	    cancelModal();
+	}
+	cancelBtn.onclick = function() {
+		modal.style.display = "none";
+		cancelModal();
 	}
 	
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function(event) {
 	    if (event.target == modal) {
 	        modal.style.display = "none";
+	        cancelModal();
 	    }
 	}
+	
+	// Handle ESC key (key code 27)
+	document.addEventListener('keyup', function(e) {
+	    if (e.keyCode == 27) {
+	        modal.style.display = "none";
+	        cancelModal();
+	    }
+	});
 	</script>
 
 	

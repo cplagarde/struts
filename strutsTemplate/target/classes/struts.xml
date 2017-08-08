@@ -13,17 +13,9 @@
 			<result name="ERROR">login.jsp</result>
 		</action>
 		
-		<action name="update" class="com.ibm.actions.EditUserAction" method="editUser">
-			<result name="SUCCESS">empEdit.jsp</result>
-		</action>
-		
-		<action name="prePop" class="com.ibm.actions.EditSaveAction" method="populate">
-			<result name="SUCCESS">empEdit.jsp</result>
-		</action>
-		
-		<action name="saveEditEmp" class="com.ibm.actions.EditSaveAction" method="saveChanges">
+		<action name="editEmp" class="com.ibm.actions.EditEmployeeAction" method="saveChanges">
 			<result name="SUCCESS">empList.jsp</result>
-			<result name="ERROR">empEdit.jsp</result>
+			<result name="ERROR">login.jsp</result>
 		</action>
 		
 		<action name="logout" class="com.ibm.actions.LogoutAction" method="logoutUser">
