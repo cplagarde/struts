@@ -45,6 +45,11 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.selectorField,
+.dataField {
+	display: none;
+}
 </style>
 
 <script type="text/javascript">
@@ -59,12 +64,9 @@
 			element.id = element.id + increment();
 	}
 	
-
-	
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
 		var modalSelectors = document.getElementById("login_state").children[0];
-		console.log(modalSelectors);	
 		var btn = document.getElementById(id);
 		var numOfFields = btn.getElementsByClassName("dataField");
 		var numOfSelectors = btn.getElementsByClassName("selectorField");
@@ -89,32 +91,28 @@
 	<br />
 	
 	
-	
-	
-	<!-- testing modal box	 -->
-
-	<!-- The Modal -->
+	<!--**************************************************************** The Modal ****************************************************************-->
 	<div id="myModal" class="modal">
 	
 	  <!-- Modal content -->
 	  <div class="modal-content">
 	    <span class="close">&times;</span>
-	<s:form>
-	<s:textfield type="text" class="modalFields" name="firstName" label="First Name" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="address" label="Address" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="city" label="City" placeholder="" />
-		<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
-		 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN', 'IA':'IA', 'KS':'KS', 'KY': 'KY',
- 		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
- 		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
- 		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
- 		 'WV': 'WV', 'WI': 'WI' }" />
-		<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="email" label="Email" placeholder="" />
-		<s:textfield type="text" class="modalFields" name="id" label ="ID" placeholder="" />
+		<s:form>
+			<s:textfield type="text" class="modalFields" name="firstName" label="First Name" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="address" label="Address" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="city" label="City" placeholder="" />
+			<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{'AL':'AL', 'AK':'AK', 'DE': 'DE',
+			 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN', 'IA':'IA', 'KS':'KS', 'KY': 'KY',
+	 		 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS', 'MO':'MO', 'MT':'MT', 'NE': 'NE',
+	 		 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND', 'OH':'OH', 'OK':'OK', 'OR': 'OR',
+	 		 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT', 'VT':'VT', 'VA':'VA', 'WA': 'WA',
+	 		 'WV': 'WV', 'WI': 'WI' }" />
+			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="email" label="Email" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="id" label ="ID" placeholder="" />
 		</s:form>		
 		
 		<s:if test="hasActionErrors()">
@@ -127,10 +125,8 @@
 		<input type="submit" value="Cancel" name="Cancel" />
 	
 	   </div>
-	
 	</div>
-	
-	<!-- done testing modal box -->
+	<!-- done with modal box -->
 	
 	
 	
@@ -147,25 +143,23 @@
 		</div>
 	</s:if>
 
-
-
-
-	<s:iterator value="employees">
-		<s:url var="eEmail">
-			<s:param name="email">
-				<s:property value="email" />
-			</s:param>
-		</s:url>
-
-		<tr>
-		
-		
+		<input type="submit" value="Add Employee" name="UpdateAddEmp" />
+		<br>
+	
+	<table>
+		<s:iterator value="employees">
+			<s:url var="eEmail">
+				<s:param name="email">
+					<s:property value="email" />
+				</s:param>
+			</s:url>
+		<tr>	
 		<!-- BBBBBBBBBBBBBBBUUUUUUUUUUUUUTTTTTTTTTTTTTTTTTTTTTOOOOOOOOOOOOOOOOOOOOOOOONNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!!!!!!!!!!!!! -->
 			<td><button class="btnArr" id="myBtn"> 
 				<s:property value="firstName" />
 				<s:property value="lastName" />
-					
-					
+				<br>
+		
 				<div class="dataField">
 					<s:property value="firstName" />
 				</div>
@@ -199,9 +193,6 @@
 				
 				</button>
 				
-				<script>
-					
-				</script>
 				
 				
 				<script type="text/javascript">
@@ -214,10 +205,7 @@
 		</tr>
 
 	</s:iterator>
-	
-
-		<input type="submit" value="Add Employee" name="UpdateAddEmp" />
-
+</table>
 
 
 
