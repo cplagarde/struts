@@ -19,6 +19,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
 import com.ibm.bo.EmpBO;
 import com.ibm.beans.Employee;
+import com.ibm.dao.EmployeeDAO;
 
 public class EditEmployeeAction extends ActionSupport {
 
@@ -112,18 +113,14 @@ public class EditEmployeeAction extends ActionSupport {
 	
 	
 	
-	public Employee addEmployee()
-	{
-		Employee e = new Employee(this.firstName,this.lastName,this.address,this.city,this.state, this.zip, this.cellPhone,this.homePhone,this.email, this.id);
-	
-		return e;
-	}
-	
-	public String saveChanges() throws IOException
+	public String update() throws IOException
 	{
 		
-		Employee employee = addEmployee();
-		employees = EmpBO.fetchEmployees();
+		Employee employee = new Employee (firstName, lastName, address, city, state, 
+				zip, cellPhone, homePhone, email, id);		
+		EmployeeDAO pickleRick = new EmployeeDAO ();
+		employees = pickleRick.fetchEmployeeData();
+		
 		
 		
 		if(employee.getFirstName().length() == 0 ||
@@ -174,29 +171,52 @@ public class EditEmployeeAction extends ActionSupport {
 			addActionError("Fields must use correct character lengths");
 			return "ERROR";
 		}
-
-		
-		for(int i = 0; i < employees.size(); i++)
-		{
-			System.out.println("jklj");
-			System.out.println(employees.get(i).email);
-		
-			if(employees.get(i).getEmail().compareTo(email) == 0)
-			{
-				System.out.println("for when email exist it goes inside if state ");
-				System.out.println(employees.get(i).getFirstName()+" "+ employees.get(i).getLastName());
-				addActionError("Information has been updated!");
-				//System.out.println("email exist!");
-				
-				employees.remove(i);
-				
-				break;	
-			
-			}	
-		}
 	
+		// update employee
+		for (int i = 0; i < employees.size(); i++) {
+			if (employees.get(i).getEmail().equals(email)) {
+				employees.get(i).setFirstName(firstName);
+				employees.get(i).setLastName(lastName);
+				employees.get(i).setAddress(address);
+				employees.get(i).setCity(city);
+				employees.get(i).setState(state);
+				employees.get(i).setZip(zip);
+				employees.get(i).setCellPhone(cellPhone);
+				employees.get(i).setHomePhone(homePhone);
+				employees.get(i).setEmail(email);
+				employees.get(i).setId(id);
+				try {
+					pickleRick.save(employees);
+				}
+				catch (IOException e) {
+					e.printStackTrace();
+				}
+				catch (URISyntaxException e) {
+					e.printStackTrace();
+				}
+				
+				Collections.sort(employees, new Comparator<Employee>()
+				{
+					public int compare(Employee v1, Employee v2)
+					{
+						return v1.getFirstName().toUpperCase().compareTo(v2.getFirstName().toUpperCase());
+					}
+				});
+				
+				return "SUCCESS";
+			}
+		}
+		// add employee
 		employees.add(employee);
-		
+		try {
+			pickleRick.save(employees);
+		}
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
 		
 		Collections.sort(employees, new Comparator<Employee>()
 		{
@@ -206,87 +226,8 @@ public class EditEmployeeAction extends ActionSupport {
 			}
 		});
 		
-		
-//		Voodoo magic to get relative path
-		URL url = new EmpBO().getClass().getClassLoader().getResource("/employees.csv");
-	    URI uri = null;
-	    try {
-			uri = url.toURI();
-		} catch (URISyntaxException e1) {
-			// TODO Auto-generated catch block
-			System.out.println("failed to convert url to uri");
-			e1.printStackTrace();
-		}
-	    File csvFile = new File(uri);
-	    
-//	    absolute pathing
-//		String csvFile = "C:/Users/ChandlerLagarde/employees.csv";
-    	
-	    StringBuilder s = new StringBuilder();
-	     
-	    
-	    for(int k =0; k < employees.size(); k++ )
-	    {
-	    	s.append(employees.get(k).getFirstName() + "," + employees.get(k).getLastName() + "," + employees.get(k).getAddress() + "," + employees.get(k).getCity() + "," + employees.get(k).getState() + "," + employees.get(k).getZip() 
-	    			+ "," + employees.get(k).getCellPhone() + "," + employees.get(k).getHomePhone()+ "," + employees.get(k).getEmail() + "," +k +"\n");
-	    }
-	    
-	    try(BufferedWriter b = new BufferedWriter (new FileWriter(csvFile)))
-	    {
-	    	b.write(s.toString());
-	    	System.out.println("Written to file");
-	    }
-	    catch(IOException e)
-	    {
-	    	e.printStackTrace();
-	    }
-	    System.out.println("List of array:" + employees.size() );
-	    
-		
-		for(int i = 0; i <employees.size(); i ++)
-		{
-			System.out.println("added employee to list");
-			System.out.println(employees.get(i).getFirstName()+" "+ employees.get(i).getLastName() + "  "+ employees.get(i).getId());
-		}
-      	return "SUCCESS";
+		return "SUCCESS";	
 	}
-
-
-	
-	
-	/*populate from url link*/
-	public String populate()
-	{		
-		if(email != null)
-		{		
-			employees = EmpBO.fetchEmployees();
-			
-			for(int k = 0; k<employees.size(); k++)
-			{
-				System.out.println("checking for id for url click");
-				System.out.println(employees.get(k).getFirstName()+" "+ employees.get(k).getLastName() + "  "+ employees.get(k).getId());
-			}
-		
-			for(Employee employee : employees )
-			{
-				if(employee.getEmail().equals(email))
-				{
-					firstName = employee.getFirstName();
-					lastName = employee.getLastName();
-					address = employee.getAddress();
-					city = employee.getCity();
-					state = employee.getState();
-					zip = employee.getZip();
-					cellPhone = employee.getCellPhone();
-					homePhone = employee.getHomePhone();
-					email = employee.getEmail();
-					id = employee.getId();
-				}
-			}	
-		}
-		return "SUCCESS";
-	}
-	
 
 }
 

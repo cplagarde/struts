@@ -30,6 +30,19 @@ public class Employee {
 		id = empId; 
 	}
 
+	public Employee(String[] fields) {
+		firstName = fields[0];
+		lastName = fields[1];
+		address = fields[2];
+		city = fields[3];
+		state = fields[4];
+		zip = fields[5];
+		cellPhone = fields[6];
+		homePhone = fields[7];
+		email = fields[8]; 
+		id = fields[9];
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

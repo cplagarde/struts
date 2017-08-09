@@ -4,8 +4,7 @@ import java.util.List;
 import com.opensymphony.xwork2.ActionSupport;
 
 import com.ibm.bo.*;
-import com.ibm.beans.Employee;
-import com.ibm.dao.LoginDAO;
+import com.ibm.beans.*;
 
 public class EditUserAction extends ActionSupport {
 
@@ -16,7 +15,7 @@ public class EditUserAction extends ActionSupport {
 	
 	/*array list holds info*/
 	private List<Employee> employees = null;
-	private List<LoginDAO> employeeAccount = null;
+	private List<Account> employeeAccount = null;
 	
 	/*declartions*/
 	private String username;

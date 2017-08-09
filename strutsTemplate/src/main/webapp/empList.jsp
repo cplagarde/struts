@@ -69,13 +69,13 @@
 // 	replace placeholders for each part of modal textfield with respective employee data (utilizing DOM)
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
-		var modalSelectors = document.getElementById("login_state").children[0];
+		var modalSelectors = document.getElementById("editEmp_state").children[0];
 		var btn = document.getElementById(id);
 		var numOfFields = btn.getElementsByClassName("dataField");
 		var numOfSelectors = btn.getElementsByClassName("selectorField");
 		
 		for (var i = 0; i < numOfFields.length; i++){
-			modalFields[i].placeholder = numOfFields[i].textContent.trim();
+			modalFields[i].value = numOfFields[i].textContent.trim();
 		}
 		for(var j = 0; j < numOfSelectors.length; j++){
 			modalSelectors.innerHTML = numOfSelectors[j].textContent.trim();
@@ -118,22 +118,22 @@
 	<!-- Modal content -->
 	<div class="modal-content">
 	    <span class="close">&times;</span>
-		<s:form aciton="editEmp">
-			<s:textfield type="text" class="modalFields" name="firstName" label="First Name" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="address" label="Address" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="city" label="City" placeholder="" />
+		<s:form method="post" action="editEmp">
+			<s:textfield type="text" class="modalFields" name="firstName" label="First Name" value="" />
+			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" value="" />
+			<s:textfield type="text" class="modalFields" name="address" label="Address" value="" />
+			<s:textfield type="text" class="modalFields" name="city" label="City" value="" />
 			<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{
 				'AL':'AL', 'AK':'AK', 'DE': 'DE', 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN',
 				'IA':'IA', 'KS':'KS', 'KY': 'KY', 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS',
 				'MO':'MO', 'MT':'MT', 'NE': 'NE', 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND',
 				'OH':'OH', 'OK':'OK', 'OR': 'OR', 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT',
 				'VT':'VT', 'VA':'VA', 'WA': 'WA', 'WV': 'WV', 'WI': 'WI' }" />
-			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="email" label="Email" placeholder="" />
-			<s:textfield type="text" class="modalFields" name="id" label ="ID" placeholder="" />
+			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" value="" />
+			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" value="" />
+			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" value="" />
+			<s:textfield type="text" class="modalFields" name="email" label="Email" value="" />
+			<s:textfield type="text" class="modalFields" name="id" label ="ID" value="" />
 					
 		
 		<s:if test="hasActionErrors()">
@@ -142,10 +142,11 @@
       		</div>
 		</s:if>
 		
-		<input type="submit" value="Add/Update Employee" name="save/update" />
+		<s:submit value="Add/Update Employee"></s:submit>
+		</s:form>	
 		<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
 
-		</s:form>	
+		
 	</div>
 	</div>
 	<!-- done with modal box -->

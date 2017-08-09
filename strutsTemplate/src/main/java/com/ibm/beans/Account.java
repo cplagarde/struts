@@ -1,25 +1,24 @@
-package com.ibm.dao;
+package com.ibm.beans;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class LoginDAO extends ActionSupport {
-	
+public class Account extends ActionSupport {
 
-	
 	String username;
 	String password;
 
-	public LoginDAO() {
-		super();
-		
+	public Account(String[] fields) {
+		username = fields[0];
+		password = fields[1];
 	}
 
-	
-	public LoginDAO(String elaUsername, String elaPassword) {
-		this();
+	public Account(String elaUsername, String elaPassword) {
 		username = elaUsername;
 		password = elaPassword;
 	}
+
+	
+	
 	
 	public String getUsername() {
 		return username;
@@ -36,8 +35,5 @@ public class LoginDAO extends ActionSupport {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-
-
 
 }
