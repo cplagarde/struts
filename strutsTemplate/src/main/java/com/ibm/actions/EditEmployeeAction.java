@@ -121,8 +121,14 @@ public class EditEmployeeAction extends ActionSupport {
 		EmployeeDAO pickleRick = new EmployeeDAO ();
 		employees = pickleRick.fetchEmployeeData();
 		
-		
-		
+		Collections.sort(employees, new Comparator<Employee>()
+		{
+			public int compare(Employee v1, Employee v2)
+			{
+				return v1.getFirstName().toUpperCase().compareTo(v2.getFirstName().toUpperCase());
+			}
+		});
+				
 		if(employee.getFirstName().length() == 0 ||
 			employee.getLastName().length() == 0 ||
 			employee.getAddress().length() == 0 ||
@@ -152,20 +158,14 @@ public class EditEmployeeAction extends ActionSupport {
 		}
 	
 
-		if(firstName.length() <2 || 
-			firstName.length() >35 ||
-			lastName.length() <2 ||
-			lastName.length() >35 ||
-			address.length() < 5 ||
-			address.length() > 50 ||
-			city.length() < 5 ||
-			city.length() > 50 ||
-			zip.length() < 5 ||
-			zip.length() > 9 ||
-			cellPhone.length() != 10 ||
-			homePhone.length() != 10 ||
-			email.length() < 10 ||
-			email.length() > 50
+		if(firstName.length() <2 || firstName.length() >35 ||
+			lastName.length() <2 ||	lastName.length() >35 ||
+			address.length() < 5 || address.length() > 50 ||
+			city.length() < 5 || city.length() > 50 ||
+			zip.length() < 5 || zip.length() > 9 ||
+			cellPhone.length() < 8 || cellPhone.length() > 12 ||
+			homePhone.length() < 8 || homePhone.length() > 12 ||
+			email.length() < 7 || email.length() > 50
 			)
 		{
 			addActionError("Fields must use correct character lengths");
