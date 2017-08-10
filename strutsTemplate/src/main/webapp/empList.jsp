@@ -128,7 +128,7 @@
 			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" value="" />
 			<s:textfield type="text" class="modalFields" name="address" label="Address" value="" />
 			<s:textfield type="text" class="modalFields" name="city" label="City" value="" />
-			<s:select type="text" class="stateSelector" label="State" name="state" list= "#{
+			<s:select type="text" class="stateSelector" label="State" headerKey="-1" headerValue="" name="state" list= "#{
 				'AL':'AL', 'AK':'AK', 'AR':'AR', 'AZ':'AZ', 'CA':'CA', 'CO':'CO', 'CT':'CT', 'DE':'DE', 'FL':'FL', 'GA':'GA',
 				'HI':'HI', 'IA':'IA', 'ID':'ID', 'IL':'IL', 'IN':'IN', 'KS':'KS', 'KY':'KY', 'LA':'LA',	'MA':'MA', 'MD':'MD',
 				'ME':'ME', 'MI':'MI', 'MN':'MN', 'MO':'MO', 'MS':'MS', 'MT':'MT', 'NC':'NC', 'ND':'ND', 'NE':'NE', 'NH':'NH',
