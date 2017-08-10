@@ -89,15 +89,6 @@
 	function cancelModal() {
 		var defaultTable = document.getElementsByClassName("wwFormTable");
 		table[1].children[0].innerHTML = defaultModal;
-		
-// 		var modalFields = document.getElementsByClassName("modalFields");
-// 	    var modalSelectors = document.getElementsByClassName("modalSelectors");
-// 	    for (var i = 0; i < modalFields.length; i++) {
-// 	        modalFields[i].value = "";
-// 	    }
-// 	    for (var j = 0; j < modalSelectors.length; j++) {
-// 	    	modalSelectors[j].selectedIndex = 0;
-// 	    }
 	}
 
 //	essenstially an onclick action
@@ -152,17 +143,8 @@
 			<s:textfield type="text" class="modalFields" name="email" label="Email" value="" />
 			<s:textfield type="text" class="modalFields" name="id" label ="ID" value="" />
 
-
 		<s:if test="hasActionErrors()">
-   			<div class="EmployeeEditedSave">
-	   			<div id="previousBtn">
-	   				<s:property value="prvBtn" />			
-	   			</div>
-	   			<script>
-	   				triggerBtn();
-	   			</script>
-	      		<s:actionerror/>
-      		</div>
+			<s:actionerror/>
 		</s:if>
 		
 		<s:submit value="Add/Update Employee"></s:submit>
@@ -183,11 +165,6 @@
 		</div>
 	</s:if>
 
-	<s:if test="hasActionErrors()">
-		<div class="login">
-			<s:actionerror />
-		</div>
-	</s:if>
 
 
 
@@ -274,7 +251,7 @@
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
 			table = document.getElementsByClassName("wwFormTable");
-			table[1].children[0].innerHTML = "<tr><input style='display: none;' type='text' id='prvBtn' value='"+this.id+"'></tr>" + table[1].innerHTML;
+			table[1].children[0].innerHTML = "<tr><input type='text' style='display: none;' name='prvBtn' id='prvBtn' value='"+this.id+"'></tr>" + table[1].innerHTML;
 	    	updateModal(this.id);
 			modal.style.display = "block";
 		}
@@ -308,6 +285,18 @@
 	</script>
 
 	
+	
+		<s:if test="hasActionErrors()">
+   			<div class="EmployeeEditedSave">
+	   			<div id="previousBtn" style="display: none;">
+	   				<s:property value="prvBtn" />			
+	   			</div>
+      		</div>
+      		<script type="text/javascript">
+	   			triggerBtn();
+	   		</script>
+		</s:if>
+		
 	
 
 
