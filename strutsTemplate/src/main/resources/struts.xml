@@ -28,10 +28,6 @@
 			<result name="ERROR">empList.jsp</result>
 		</action>
 		
-
-
-
 	</package>
-
 
 </struts>

@@ -94,11 +94,8 @@
 //	essenstially an onclick action
 	function triggerBtn() {
 		var btnId = document.getElementById("previousBtn").textContent.trim();
-		console.log(btnId);
 		var btn = document.getElementById(btnId);
-		console.log(btn);
 		btn.click();
-		
 	}
 
 
@@ -155,22 +152,10 @@
 	</div>
 	</div>
 	<!-- done with modal box -->
-	
-	
-	
-	
-	<s:if test="hasActionMessages()">
-		<div class="empList">
-			<s:actionmessage />
-		</div>
-	</s:if>
 
 
 
 
-	<input type="submit" value="Add Employee" name="UpdateAddEmp" />
-	<br>
-	
 	<table>
 		<s:iterator value="employees">
 			<s:url var="eEmail">
@@ -226,6 +211,9 @@
 			<td><s:property value="email" /></td>
 		</tr>
 		</s:iterator>
+		<tr>
+			<td><button id="addBtn">Add Employee</button></td>
+		</tr>
 	</table>
 
 
@@ -255,6 +243,13 @@
 	    	updateModal(this.id);
 			modal.style.display = "block";
 		}
+	}
+	
+	// When the user clicks the Add Employee button, open empty modal
+	var addBtn = document.getElementById("addBtn");
+	addBtn.onclick = function() {
+		table = document.getElementsByClassName("wwFormTable");
+		modal.style.display = "block";
 	}
 	
 	// When the user clicks on <span> (x) or cancelBtn, close the modal
