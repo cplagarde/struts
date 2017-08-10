@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee List</title>
 
+
+<!--**************************************************************** CSS ****************************************************************-->
 <style>
 /* The Modal (background) */
 .modal {
@@ -53,6 +55,9 @@
 }
 </style>
 
+
+
+<!--**************************************************************** JavaScript Functions ****************************************************************-->
 <script type="text/javascript">
 	var counter = 0;
 	function increment(){
@@ -102,12 +107,15 @@
 </script>
 
 </head>
+
+
+
+<!--**************************************************************** Body ****************************************************************-->
 <body>
 	<h3>
 		Welcome
 		<s:property value="username"></s:property>
 	</h3>
-	
 
 	<b>Employee Editor</b>
 	<br />
@@ -116,42 +124,43 @@
 	<!--**************************************************************** The Modal ****************************************************************-->
 	<div id="myModal" class="modal">
 	
-	<!-- Modal content -->
-	<div class="modal-content">
-	    <span class="close">&times;</span>
-		<s:form method="post" action="editEmp">
-			<s:textfield type="text" class="modalFields" name="firstName" label="First Name" value="" />
-			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" value="" />
-			<s:textfield type="text" class="modalFields" name="address" label="Address" value="" />
-			<s:textfield type="text" class="modalFields" name="city" label="City" value="" />
-			<s:select type="text" class="stateSelector" label="State" headerKey="-1" headerValue="" name="state" list= "#{
-				'AL':'AL', 'AK':'AK', 'AR':'AR', 'AZ':'AZ', 'CA':'CA', 'CO':'CO', 'CT':'CT', 'DE':'DE', 'FL':'FL', 'GA':'GA',
-				'HI':'HI', 'IA':'IA', 'ID':'ID', 'IL':'IL', 'IN':'IN', 'KS':'KS', 'KY':'KY', 'LA':'LA',	'MA':'MA', 'MD':'MD',
-				'ME':'ME', 'MI':'MI', 'MN':'MN', 'MO':'MO', 'MS':'MS', 'MT':'MT', 'NC':'NC', 'ND':'ND', 'NE':'NE', 'NH':'NH',
-				'NJ':'NJ', 'NM':'NM', 'NV':'NV', 'NY':'NY', 'OH':'OH', 'OK':'OK', 'OR':'OR', 'PA':'PA', 'RI':'RI', 'SC':'SC',
-				'SD':'SD', 'TN':'TN', 'TX':'TX', 'UT':'UT', 'VA':'VA', 'VT':'VT', 'WA':'WA', 'WI':'WI', 'WV':'WV', 'WY':'WY' }" />
-			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" value="" />
-			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" value="" />
-			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" value="" />
-			<s:textfield type="text" class="modalFields" name="email" label="Email" value="" />
-			<s:textfield type="text" class="modalFields" name="id" label ="ID" value="" />
+		<!-- Modal content -->
+		<div class="modal-content">
+		    <span class="close">&times;</span>
+			<s:form method="post" action="editEmp">
+				<s:textfield type="text" class="modalFields" name="firstName" label="First Name" value="" />
+				<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" value="" />
+				<s:textfield type="text" class="modalFields" name="address" label="Address" value="" />
+				<s:textfield type="text" class="modalFields" name="city" label="City" value="" />
+				<s:select type="text" class="stateSelector" label="State" headerKey="-1" headerValue="" name="state" list= "#{
+					'AL':'AL', 'AK':'AK', 'AR':'AR', 'AZ':'AZ', 'CA':'CA', 'CO':'CO', 'CT':'CT', 'DE':'DE', 'FL':'FL', 'GA':'GA',
+					'HI':'HI', 'IA':'IA', 'ID':'ID', 'IL':'IL', 'IN':'IN', 'KS':'KS', 'KY':'KY', 'LA':'LA',	'MA':'MA', 'MD':'MD',
+					'ME':'ME', 'MI':'MI', 'MN':'MN', 'MO':'MO', 'MS':'MS', 'MT':'MT', 'NC':'NC', 'ND':'ND', 'NE':'NE', 'NH':'NH',
+					'NJ':'NJ', 'NM':'NM', 'NV':'NV', 'NY':'NY', 'OH':'OH', 'OK':'OK', 'OR':'OR', 'PA':'PA', 'RI':'RI', 'SC':'SC',
+					'SD':'SD', 'TN':'TN', 'TX':'TX', 'UT':'UT', 'VA':'VA', 'VT':'VT', 'WA':'WA', 'WI':'WI', 'WV':'WV', 'WY':'WY' }" />
+				<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" value="" />
+				<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" value="" />
+				<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" value="" />
+				<s:textfield type="text" class="modalFields" name="email" label="Email" value="" />
+				<s:textfield type="text" class="modalFields" name="id" label ="ID" value="" />
+	
+			<!-- error action that points to bottom error -->
+			<s:if test="hasActionErrors()">
+				<s:actionerror/>
+			</s:if>
+			
+			<s:submit value="Add/Update Employee"></s:submit>
+			</s:form>	
+			<!-- cancel button -->
+			<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
 
-		<s:if test="hasActionErrors()">
-			<s:actionerror/>
-		</s:if>
-		
-		<s:submit value="Add/Update Employee"></s:submit>
-		</s:form>	
-		<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
-
-		
-	</div>
+		</div>
 	</div>
 	<!-- done with modal box -->
 
 
 
-
+	<!--**************************************************************** Auto Generated Table ****************************************************************-->
 	<table>
 		<s:iterator value="employees">
 			<s:url var="eEmail">
@@ -214,8 +223,7 @@
 
 
 
-
-
+	<!--**************************************************************** In Line JS ****************************************************************-->
 	<script type="text/javascript">	
 	// Get the modal
 	var modal = document.getElementById('myModal');
@@ -277,17 +285,18 @@
 
 	
 	
-		<s:if test="hasActionErrors()">
-   			<div class="EmployeeEditedSave">
-	   			<div id="previousBtn" style="display: none;">
-	   				<s:property value="prvBtn" />			
-	   			</div>
-      		</div>
-      		<script type="text/javascript">
-	   			triggerBtn();
-	   		</script>
-		</s:if>
-		
+	<!--*********************************************************** errors and logout button ***********************************************************-->
+	<s:if test="hasActionErrors()">
+  			<div class="EmployeeEditedSave">
+   			<div id="previousBtn" style="display: none;">
+   				<s:property value="prvBtn" />			
+   			</div>
+     		</div>
+     		<script type="text/javascript">
+   			triggerBtn();
+   		</script>
+	</s:if>
+	
 	<s:form action="logout">
 		<s:submit value="logout" />
 	</s:form>
