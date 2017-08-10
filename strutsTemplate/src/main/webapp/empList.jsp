@@ -88,7 +88,7 @@
 // 	replace value of modal to default if modal is cancelled
 	function cancelModal() {
 		var defaultTable = document.getElementsByClassName("wwFormTable");
-		table[1].children[0].innerHTML = defaultModal;
+		table[0].children[0].innerHTML = defaultModal;
 	}
 
 //	essenstially an onclick action
@@ -107,10 +107,6 @@
 		Welcome
 		<s:property value="username"></s:property>
 	</h3>
-	
-	<s:form action="logout">
-		<s:submit value="logout" />
-	</s:form>
 	
 
 	<b>Employee Editor</b>
@@ -233,13 +229,13 @@
 
 	// create a default version of the modal on a global scale
 	var defaultTable = document.getElementsByClassName("wwFormTable");
-	var defaultModal = defaultTable[1].children[0].innerHTML;
+	var defaultModal = defaultTable[0].children[0].innerHTML;
 
 	// When the user clicks the button, open the modal for employee clicked
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
 			table = document.getElementsByClassName("wwFormTable");
-			table[1].children[0].innerHTML = "<tr><input type='text' style='display: none;' name='prvBtn' id='prvBtn' value='"+this.id+"'></tr>" + table[1].innerHTML;
+			table[0].children[0].innerHTML = "<tr><input type='text' style='display: none;' name='prvBtn' id='prvBtn' value='"+this.id+"'></tr>" + table[0].innerHTML;
 	    	updateModal(this.id);
 			modal.style.display = "block";
 		}
@@ -292,7 +288,9 @@
 	   		</script>
 		</s:if>
 		
-	
+	<s:form action="logout">
+		<s:submit value="logout" />
+	</s:form>
 
 
 </body>
