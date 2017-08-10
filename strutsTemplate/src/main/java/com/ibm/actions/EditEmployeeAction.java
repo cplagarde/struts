@@ -36,8 +36,10 @@ public class EditEmployeeAction extends ActionSupport {
 	String email;
 	String id;
 	String username;	
+	String prvBtn;
 	
 	
+
 	public String getFirstName() {
 		return firstName;
 	}
@@ -109,12 +111,20 @@ public class EditEmployeeAction extends ActionSupport {
 	{
 		this.employees = employees;
 	}
+	public String getPrvBtn() {
+		return prvBtn;
+	}
+	public void setPrvBtn(String prvBtn) {
+		this.prvBtn = prvBtn;
+	}
+	
 	
 	
 	
 	
 	public String update() throws IOException
 	{
+		System.out.println(getPrvBtn());
 		
 		Employee employee = new Employee (firstName, lastName, address, city, state, 
 				zip, cellPhone, homePhone, email, id);		

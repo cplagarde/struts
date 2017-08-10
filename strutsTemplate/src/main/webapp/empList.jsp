@@ -69,7 +69,8 @@
 // 	replace placeholders for each part of modal textfield with respective employee data (utilizing DOM)
 	function updateModal(id) {
 		var modalFields = document.getElementsByClassName("modalFields");
-		var modalSelectors = document.getElementById("editEmp_state").children[0];
+		var modalSelectors = document.getElementsByClassName("stateSelector");
+		var options = modalSelectors[0].children;
 		var btn = document.getElementById(id);
 		var numOfFields = btn.getElementsByClassName("dataField");
 		var numOfSelectors = btn.getElementsByClassName("selectorField");
@@ -77,22 +78,38 @@
 		for (var i = 0; i < numOfFields.length; i++){
 			modalFields[i].value = numOfFields[i].textContent.trim();
 		}
-		for(var j = 0; j < numOfSelectors.length; j++){
-			modalSelectors.innerHTML = numOfSelectors[j].textContent.trim();
-		}
+		for(var j = 0; j < options.length; j++){
+			if (options[j].value === numOfSelectors[0].textContent.trim()) {
+				options[j].selected = numOfSelectors[0].textContent.trim();
+			}
+		}		
 	}
 	
 // 	replace value of modal to default if modal is cancelled
 	function cancelModal() {
-		var modalFields = document.getElementsByClassName("modalFields");
-	    var modalSelectors = document.getElementsByClassName("modalSelectors");
-	    for (var i = 0; i < modalFields.length; i++) {
-	        modalFields[i].value = "";
-	    }
-	    for (var j = 0; j < modalSelectors.length; j++) {
-	    	modalSelectors[j].selectedIndex = 0;
-	    }
+		var defaultTable = document.getElementsByClassName("wwFormTable");
+		table[1].children[0].innerHTML = defaultModal;
+		
+// 		var modalFields = document.getElementsByClassName("modalFields");
+// 	    var modalSelectors = document.getElementsByClassName("modalSelectors");
+// 	    for (var i = 0; i < modalFields.length; i++) {
+// 	        modalFields[i].value = "";
+// 	    }
+// 	    for (var j = 0; j < modalSelectors.length; j++) {
+// 	    	modalSelectors[j].selectedIndex = 0;
+// 	    }
 	}
+
+//	essenstially an onclick action
+	function triggerBtn() {
+		var btnId = document.getElementById("previousBtn").textContent.trim();
+		console.log(btnId);
+		var btn = document.getElementById(btnId);
+		console.log(btn);
+		btn.click();
+		
+	}
+
 
 </script>
 
@@ -123,22 +140,28 @@
 			<s:textfield type="text" class="modalFields" name="lastName" label="Last Name" value="" />
 			<s:textfield type="text" class="modalFields" name="address" label="Address" value="" />
 			<s:textfield type="text" class="modalFields" name="city" label="City" value="" />
-			<s:select type="text" class="modalSelectors" label="State" headerKey="-1" headerValue="" name="state" list= "#{
-				'AL':'AL', 'AK':'AK', 'DE': 'DE', 'DC': 'DC', 'FL': 'FL','GA':'GA', 'HI':'HI', 'ID': 'ID', 'IL': 'IL', 'IN': 'IN',
-				'IA':'IA', 'KS':'KS', 'KY': 'KY', 'LA': 'LA', 'ME': 'ME','MD':'MD', 'MA':'MA', 'MI': 'MI', 'MN': 'MN', 'MS': 'MS',
-				'MO':'MO', 'MT':'MT', 'NE': 'NE', 'NV': 'NV', 'NH': 'NH','NJ':'NJ', 'NM':'NM', 'NY': 'NY', 'NC': 'NC', 'ND': 'ND',
-				'OH':'OH', 'OK':'OK', 'OR': 'OR', 'PA': 'PA', 'RI': 'RI','SC':'SC', 'SD':'SD', 'TN': 'TN', 'TX': 'TX', 'UT': 'UT',
-				'VT':'VT', 'VA':'VA', 'WA': 'WA', 'WV': 'WV', 'WI': 'WI' }" />
+			<s:select type="text" class="stateSelector" label="State" name="state" list= "#{
+				'AL':'AL', 'AK':'AK', 'AR':'AR', 'AZ':'AZ', 'CA':'CA', 'CO':'CO', 'CT':'CT', 'DE':'DE', 'FL':'FL', 'GA':'GA',
+				'HI':'HI', 'IA':'IA', 'ID':'ID', 'IL':'IL', 'IN':'IN', 'KS':'KS', 'KY':'KY', 'LA':'LA',	'MA':'MA', 'MD':'MD',
+				'ME':'ME', 'MI':'MI', 'MN':'MN', 'MO':'MO', 'MS':'MS', 'MT':'MT', 'NC':'NC', 'ND':'ND', 'NE':'NE', 'NH':'NH',
+				'NJ':'NJ', 'NM':'NM', 'NV':'NV', 'NY':'NY', 'OH':'OH', 'OK':'OK', 'OR':'OR', 'PA':'PA', 'RI':'RI', 'SC':'SC',
+				'SD':'SD', 'TN':'TN', 'TX':'TX', 'UT':'UT', 'VA':'VA', 'VT':'VT', 'WA':'WA', 'WI':'WI', 'WV':'WV', 'WY':'WY' }" />
 			<s:textfield type="text" class="modalFields" name="zip" label="Zip/Postal Code" value="" />
 			<s:textfield type="text" class="modalFields" name="cellPhone" label="Cell Phone" value="" />
 			<s:textfield type="text" class="modalFields" name="homePhone" label="Home Phone" value="" />
 			<s:textfield type="text" class="modalFields" name="email" label="Email" value="" />
 			<s:textfield type="text" class="modalFields" name="id" label ="ID" value="" />
-					
-		
+
+
 		<s:if test="hasActionErrors()">
    			<div class="EmployeeEditedSave">
-      		<s:actionerror/>
+	   			<div id="previousBtn">
+	   				<s:property value="prvBtn" />			
+	   			</div>
+	   			<script>
+	   				triggerBtn();
+	   			</script>
+	      		<s:actionerror/>
       		</div>
 		</s:if>
 		
@@ -182,8 +205,8 @@
 			<!-- button that accesses employee data and creates it on document -->
 			<td><button class="btnArr" id="myBtn"> 
 				Edit
-				<br>
-		
+				<br>				
+				
 				<div class="dataField">
 					<s:property value="firstName" />
 				</div>
@@ -242,12 +265,18 @@
 	// Get the <span> & <input> element that closes the modal
 	var span = document.getElementsByClassName("close")[0];
 	var cancelBtn = document.getElementsByClassName("cancelBtn")[0];
-	
+
+	// create a default version of the modal on a global scale
+	var defaultTable = document.getElementsByClassName("wwFormTable");
+	var defaultModal = defaultTable[1].children[0].innerHTML;
+
 	// When the user clicks the button, open the modal for employee clicked
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
-			updateModal(this.id);
-	    	modal.style.display = "block";
+			table = document.getElementsByClassName("wwFormTable");
+			table[1].children[0].innerHTML = "<tr><input style='display: none;' type='text' id='prvBtn' value='"+this.id+"'></tr>" + table[1].innerHTML;
+	    	updateModal(this.id);
+			modal.style.display = "block";
 		}
 	}
 	
