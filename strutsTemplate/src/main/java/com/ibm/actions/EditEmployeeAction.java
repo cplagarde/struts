@@ -134,7 +134,7 @@ public class EditEmployeeAction extends ActionSupport {
 			employee.getLastName().length() == 0 ||
 			employee.getAddress().length() == 0 ||
 			employee.getCity().length() == 0 ||
-			employee.getState().length() == 0 ||
+			employee.getState().matches("-1") ||
 			employee.getZip().length() == 0 ||
 			employee.getCellPhone().length() == 0 ||
 			employee.getHomePhone().length() == 0 ||

@@ -94,6 +94,13 @@
 	function cancelModal() {
 		var defaultTable = document.getElementsByClassName("wwFormTable");
 		table[0].children[0].innerHTML = defaultModal;
+		
+		// clean action error on cancel
+		var fieldErrorMsg = document.getElementsByClassName("errorMessage");
+	    while (fieldErrorMsg[0].hasChildNodes()) {
+	        fieldErrorMsg[0].removeChild(fieldErrorMsg[0].firstChild);
+	    }
+		
 	}
 
 //	essenstially an onclick action
@@ -239,7 +246,8 @@
 	var defaultTable = document.getElementsByClassName("wwFormTable");
 	var defaultModal = defaultTable[0].children[0].innerHTML;
 
-	// When the user clicks the button, open the modal for employee clicked
+	// When the user clicks the edit button, open the modal for employee clicked
+	// also stores a previous button id for cancel utilization
 	for (var i = 0; i < btns.length; i++) {
 		btns[i].onclick = function() {
 			table = document.getElementsByClassName("wwFormTable");
@@ -252,7 +260,13 @@
 	// When the user clicks the Add Employee button, open empty modal
 	var addBtn = document.getElementById("addBtn");
 	addBtn.onclick = function() {
+		// get default table (empty modal)
 		table = document.getElementsByClassName("wwFormTable");
+		// set state value to empty
+		var modalSelectors = document.getElementsByClassName("stateSelector");
+		var options = modalSelectors[0].children;
+		options[0].selected = true;
+		// display modal
 		modal.style.display = "block";
 	}
 	
