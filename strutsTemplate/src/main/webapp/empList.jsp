@@ -97,10 +97,11 @@
 		
 		// clean action error on cancel
 		var fieldErrorMsg = document.getElementsByClassName("errorMessage");
-	    while (fieldErrorMsg[0].hasChildNodes()) {
-	        fieldErrorMsg[0].removeChild(fieldErrorMsg[0].firstChild);
-	    }
-		
+		if (fieldErrorMsg[0] != null) {
+			while (fieldErrorMsg[0].hasChildNodes()) {
+		        fieldErrorMsg[0].removeChild(fieldErrorMsg[0].firstChild);
+		    }
+		}		
 	}
 
 //	essenstially an onclick action
