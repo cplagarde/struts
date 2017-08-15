@@ -95,7 +95,7 @@
 		var defaultTable = document.getElementsByClassName("wwFormTable");
 		table[0].children[0].innerHTML = defaultModal;
 		
-		// clean action error on cancel
+		// if action error, clean action error on cancel
 		var fieldErrorMsg = document.getElementsByClassName("errorMessage");
 		if (fieldErrorMsg[0] != null) {
 			while (fieldErrorMsg[0].hasChildNodes()) {
