@@ -1,8 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
+<%@ taglib prefix="sj" uri="/struts-jquery-tags"%>
+
 <html>
 <head>
+<sj:head/>
+<sb:head/>
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Employee List</title>
 
@@ -53,6 +58,72 @@
 .dataField {
 	display: none;
 }
+
+/* Bootstap table */
+.table-striped>tbody>tr:nth-child(odd) {
+	background-color: #b7caff;
+}
+
+/* Modal labels */
+label, label.label, .label {
+	color: black;
+}
+
+/* Modal input fields */
+.modalfields {
+	border-radius: 5px;
+}
+.stateselector {
+	border-radius: 5px;
+}
+
+/* Navigation Bar */
+ul.navBar {
+    /* position, top, and width, make it fixed on top of page*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navBar {
+	min-height: 20px;
+	max-height: 50px;
+}
+
+li.navBar {
+    float: left;
+}
+
+li a.navBar {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+/* change the link color to #111 (black) on hover */
+li a:hover.navBar {
+    background-color: #111;
+}
+
+/*active class to the current link to let user know where they are*/
+.active {
+    background-color: #4a6bc4;
+}
+
+/* push start of page below nav bar */
+body{
+	padding-top: 40px;
+}
+
+
+
 </style>
 
 
@@ -120,13 +191,17 @@
 
 <!--**************************************************************** Body ****************************************************************-->
 <body>
-	<h3>
-		Welcome
-		<s:property value="username"></s:property>
-	</h3>
+	<div class="container text-center">
+		<h2>
+			Welcome
+			<s:property value="username"></s:property>
+		</h2>
+		
+		<br>
 
-	<b>Employee Editor</b>
-	<br />
+		<h4><b>Employee Editor</b></h4>
+		<br>
+	</div>
 	
 	
 	<!--**************************************************************** The Modal ****************************************************************-->
@@ -157,10 +232,13 @@
 				<s:actionerror/>
 			</s:if>
 			
-			<s:submit value="Add/Update Employee"></s:submit>
+			<br>
+			
+			<s:submit class="btn" value="Add/Update Employee"></s:submit>
 			</s:form>	
 			<!-- cancel button -->
-			<input type="submit" class="cancelBtn" value="Cancel" name="Cancel" />
+			
+			<input type="submit" class="cancelBtn Btn" style="position: absolute; top: 285px; left: 260px;" value="Cancel" name="Cancel" />
 
 		</div>
 	</div>
@@ -169,7 +247,7 @@
 
 
 	<!--**************************************************************** Auto Generated Table ****************************************************************-->
-	<table>
+	<table class="table table-striped table-bordered table-condensed">
 		<s:iterator value="employees">
 			<s:url var="eEmail">
 				<s:param name="email">
@@ -178,7 +256,7 @@
 			</s:url>
 		<tr>	
 			<!-- button that accesses employee data and creates it on document -->
-			<td><button class="btnArr" id="myBtn"> 
+			<td><button class="btnArr btn" id="myBtn"> 
 				Edit
 				<br>				
 				
@@ -224,11 +302,10 @@
 			<td><s:property value="email" /></td>
 		</tr>
 		</s:iterator>
-		<tr>
-			<td><button id="addBtn">Add Employee</button></td>
-		</tr>
+		
 	</table>
 
+	<button class="btn" id="addBtn">Add Employee</button>
 
 
 	<!--**************************************************************** Inline JS ****************************************************************-->
@@ -312,9 +389,21 @@
    		</script>
 	</s:if>
 	
+
 	<s:form action="logout">
-		<s:submit value="logout" />
+		<s:submit class="btn" value="Log Out" />
 	</s:form>
+	
+	
+	
+<!-- Navigation Bar-->
+<div>
+	<ul class="navBar">
+		<li class="navBar"><a class="navBar" href="#" target="_self">Home</a></li>
+		<li style="float: right" class="navBar active"><a class="navBar" href="./" target="_self">
+			Log Out</a></li>
+	</ul>
+</div>
 
 
 </body>

@@ -12,10 +12,12 @@
 
 <style>
 ul, menu, dir {
-	list-style-type: none;
+	display:flex;
+	padding: 0;
+
 }
 li {
-	text-align: center;
+	display: inline-block;
 }
 
 </style>
@@ -23,7 +25,7 @@ li {
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="padding: 100px 0;">
 	<div class="jumbotron text-center">
 
 		<h1>Employee Login </h1>
